@@ -1,9 +1,0 @@
-#!/bin/bash
-PID=$( jps -mv | grep zd | awk '{print $1}')
-
-if [ "$PID" = "" ]; then
-   exit 0
-fi
-kill  $PID
-
-

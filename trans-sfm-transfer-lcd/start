@@ -1,8 +1,0 @@
-#!/bin/bash
-if [ -n "$1" ]; then
-    ENV=$1
-else
-    echo "ERROR: The ENV param is null"
-    exit 1
-fi
-nohup java -jar -Dspring.profiles.active=$ENV,zd -jar lcd.jar > /dev/null 2>&1 &
