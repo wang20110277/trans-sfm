@@ -1,0 +1,7 @@
+/Users/lindaw/Documents/trans-sfm/trans-sfm-client-batch/src/main/java/com/trans/sfm/client/batch/Application.java
+/Users/lindaw/Documents/trans-sfm/trans-sfm-client-batch/src/main/java/com/trans/sfm/client/batch/batch/JobRunner.java
+/Users/lindaw/Documents/trans-sfm/trans-sfm-client-batch/src/main/java/com/trans/sfm/client/batch/mapper/UserMapper.java
+/Users/lindaw/Documents/trans-sfm/trans-sfm-client-batch/src/main/java/com/trans/sfm/client/batch/service/UserService.java
+/Users/lindaw/Documents/trans-sfm/trans-sfm-client-batch/src/main/java/com/trans/sfm/client/batch/config/MyBatisConfig.java
+/Users/lindaw/Documents/trans-sfm/trans-sfm-client-batch/src/main/java/com/trans/sfm/client/batch/entity/User.java
+/Users/lindaw/Documents/trans-sfm/trans-sfm-client-batch/src/main/java/com/trans/sfm/client/batch/batch/BatchConfiguration.java

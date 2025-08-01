@@ -1,0 +1,161 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.cdc.gateway</groupId>
+	<artifactId>gw-sdk</artifactId>
+	<version>1.0.4</version>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.8</jdk.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<fastjson.version>1.2.76</fastjson.version>
+		<slfj.version>1.7.25</slfj.version>
+		<log4j2.version>2.8.2</log4j2.version>
+		<commons-lang3.version>3.5</commons-lang3.version>
+		<commons-codec.version>1.10</commons-codec.version>
+		<commons-beanutils.version>1.9.4</commons-beanutils.version>
+		<lombok.version>1.16.16</lombok.version>
+		<hibernate-validator.version>5.3.6.Final</hibernate-validator.version>
+		<commons-lang3.version>3.5</commons-lang3.version>
+		<cfca-ra-sadk.version>3.5.2.1</cfca-ra-sadk.version>
+		<cfca-ch-qos-logback.version>3.1.0.0</cfca-ch-qos-logback.version>
+		<ra.toolkit.version>3.6.5.5</ra.toolkit.version>
+		<jackson-core.version>2.12.3</jackson-core.version>
+		<jackson-databind.version>2.12.3</jackson-databind.version>
+		<fsp-http-sdk.version>4.0.4</fsp-http-sdk.version>
+		<netty-all.version>4.1.0.Final</netty-all.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<version>2.2.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson-core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson-databind.version}</version>
+		</dependency>
+
+		<!-- 通讯 -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.4.5</version>
+		</dependency>
+
+
+		<!-- 签名延签加密解密 -->
+
+		<dependency>
+			<groupId>cfca.ra</groupId>
+			<artifactId>sadk</artifactId>
+			<version>${cfca-ra-sadk.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cfca.ch.qos.logback</groupId>
+			<artifactId>logback-cfca-jdk1.6</artifactId>
+			<version>${cfca-ch-qos-logback.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cfca.ra</groupId>
+			<artifactId>ra-toolkit</artifactId>
+			<version>${ra.toolkit.version}</version>
+		</dependency>
+
+		<!-- 文件上传下载 -->
+		<dependency>
+			<groupId>com.chinabond.fsp</groupId>
+			<artifactId>fsp-channel-sdk</artifactId>
+			<version>${fsp-http-sdk.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slfj.version}</version>
+		</dependency>
+
+		<dependency>
+			<artifactId>hibernate-validator</artifactId>
+			<groupId>org.hibernate</groupId>
+			<version>${hibernate-validator.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
+		</dependency>
+		<!-- http相关 start -->
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>${netty-all.version}</version>
+		</dependency>
+		<!-- http相关 end -->
+	</dependencies>
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>
+								../gw-sdk/LIB
+							</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

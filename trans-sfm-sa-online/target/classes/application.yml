@@ -1,0 +1,24 @@
+spring:
+  autoconfigure:
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+  profiles:
+    active: test
+  shardingsphere:
+    datasource:
+      names: ds0,ds1,ds2,ds3,config
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      table-underline: true
+
+# Druid监控配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

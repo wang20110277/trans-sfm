@@ -1,0 +1,92 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: lcd
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+  cloud:
+    config:
+      import-check:
+        enabled: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+
+logging:
+  config: classpath:log/logback.xml
+  level:
+    root: info
+
+
+path:
+  common:
+    base: /file/lcd_data/file   # 必须
+    file: '{fileName}'
+    upload: ${path.common.base}/upload
+  zd:
+    originCert: cert/uat # 必须
+    cert: /file/lcd_data/cert # 必须
+    data: ${path.common.base}/data
+    share: ${path.common.base}/share
+    send: ${path.zd.share}/send/{date}
+    sendFile: ${path.zd.share}/send/{date}/${path.common.file}
+    sendBakFile: ${path.zd.share}/send_bak/{date}/${path.common.file}
+    receive: ${path.zd.share}/receive/{date}
+    receiveFile: ${path.zd.receive}/${path.common.file}
+    receiveBakFile: ${path.zd.share}/receive_bak/{date}/${path.common.file}
+    receipt:
+      - ${path.zd.share}/receipt/{date}
+
+
+sdkconfig:
+  appId: '0000002040'
+  appSecret: 141bcb24788347a2aa207dd9eede8e0b
+  fileTmpPath: ${path.common.base}/tmp
+  fspChannelUrl: https://api-wm.chinawealth.com.cn/fsp-channel
+  fspSecret: 1f78520f71c2edaf5d00ff5ef8f6f69e
+  msgDecryptPriKeyPassword: ccdc666666
+  msgDecryptPriKeyPath: 051@LC北京中关村银行智慧金融部@Z00000479060@1-enc.sm2
+  msgEncryptPubCertPath: sign-api-wm.chinawealth.com.cn-enccert.cer
+  msgSendBigDecimalToString: true
+  msgSignCertPassword: ccdc666666
+  msgSignCertPath: 051@LC北京中关村银行智慧金融部@Z00000479060@1-sign.sm2
+  recvGatewayUrl: https://api-wm.chinawealth.com.cn/gw-ogt-service/ogtController/ogtQueryMsg
+  recvHttpListenPort: 13333
+  sendChannelType: https
+  sendConnectionTimeoutInSecond: 30
+  sendGatewayUrl: https://api-wm.chinawealth.com.cn/gw-igt-service/igtController/igtSender
+  sendHttpsTrustStorePassword: chinawealth
+  sendHttpsTrustStorePath: chinawealth.com.cn_2022.truststore
+  sendReadTimeoutInSecond: 30
+
+scheduled:
+  zd:
+    receiveMessageScan: 5000
+    sendFileScan: 5000
+
+organization:
+  me:
+    organizationName: 中关村银行
+    organizationId: '0000047906'
+    subOrganizationId: '0000000548'
+    organizationCode: 'Z000000548'
+    taCode: ZGC
+  others:
+    - organizationName: 百信
+      organizationId: '0000049742'
+      subOrganizationId: '0000000525'
+      organizationCode: 'C138900525'
+      taCode: BXB
+
+  #  证件号 Z00000479060
+  #  appId 0000002040
+  #  秘钥 141bcb24788347a2aa207dd9eede8e0b
+  #  机构编码 0000047906
+  # 机构名称 北京中关村银行股份有限公司
+  # 子机构编码 0000000548
+  # 子机构名称 北京中关村银行智慧金融

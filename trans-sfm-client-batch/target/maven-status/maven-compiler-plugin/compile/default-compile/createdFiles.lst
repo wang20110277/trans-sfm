@@ -1,0 +1,7 @@
+com/trans/sfm/client/batch/entity/User.class
+com/trans/sfm/client/batch/batch/JobRunner.class
+com/trans/sfm/client/batch/Application.class
+com/trans/sfm/client/batch/batch/BatchConfiguration.class
+com/trans/sfm/client/batch/config/MyBatisConfig.class
+com/trans/sfm/client/batch/mapper/UserMapper.class
+com/trans/sfm/client/batch/service/UserService.class

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.chinabond.fsp</groupId>
+  <artifactId>fsp-channel-sdk</artifactId>
+  <version>4.0.4</version>
+  <packaging>jar</packaging>
+  
+  <properties>
+		<!-- 本项目组成模块版本 -->
+		<fsp.version>4.0.3</fsp.version>
+		<!-- okhttp3 -->
+		<okhttp3.version>3.11.0</okhttp3.version>
+		<!-- okio -->
+		<okio.version>1.14.0</okio.version>
+		<!-- fastjson -->
+		<fastjson.version>1.2.70</fastjson.version>
+  </properties>
+
+  <dependencies>
+        <dependency>
+			<groupId>com.chinabond.fsp</groupId>
+			<artifactId>fsp-common</artifactId>
+			<version>${fsp.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>${okhttp3.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup.okio</groupId>
+			<artifactId>okio</artifactId>
+			<version>${okio.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
+		</dependency>
+  </dependencies>
+  <build>
+    <finalName>fsp-channel-sdk</finalName>
+  </build>
+</project>
