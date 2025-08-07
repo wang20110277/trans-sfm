@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: trans-sfm-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 # Nacos服务器地址
+    gateway:
+      routes:
+        - id: trans-sfm-sa-online
+          uri: lb://trans-sfm-sa-online
+          predicates:
+            - Path=/sa/**
+        - id: trans-sfm-client-online
+          uri: lb://trans-sfm-client-online
+          predicates:
+            - Path=/client/**
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

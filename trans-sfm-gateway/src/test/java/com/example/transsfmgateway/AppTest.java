@@ -1,15 +1,10 @@
 package com.example.transsfmgateway;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
+@SpringBootTest
+public class AppTest {
     /**
      * Create the test case
      *
@@ -34,5 +29,10 @@ public class AppTest
     public void testApp()
     {
         assertTrue( true );
+    }
+
+    @Test
+    public void contextLoads() {
+        // 测试Spring上下文加载
     }
 }

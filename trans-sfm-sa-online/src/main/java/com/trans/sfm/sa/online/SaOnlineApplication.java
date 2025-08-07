@@ -8,13 +8,13 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableFeignClients(basePackages = "com.trans.sfm.sa.online")
-public class Application {
+public class SaOnlineApplication {
     
-    private static final Logger logger = LoggerFactory.getLogger(Application.class);
+    private static final Logger logger = LoggerFactory.getLogger(SaOnlineApplication.class);
 
     public static void main(String[] args) {
         logger.info("Starting trans-sfm-sa-online application...");
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(SaOnlineApplication.class, args);
         logger.info("trans-sfm-sa-online application started successfully.");
     }
 }
