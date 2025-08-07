@@ -1,10 +1,9 @@
 package com.trans.sfm.sa.online.facade;
 
 import com.trans.sfm.sa.online.api.OpenAccountAPI;
+import com.trans.sfm.sa.online.domain.OpenAccountRequest;
+import com.trans.sfm.sa.online.domain.OpenAccountResponse;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 开户接口实现类
@@ -13,12 +12,14 @@ import java.util.Map;
 public class OpenAccountFacade implements OpenAccountAPI {
     
     @Override
-    public Map<String, Object> openAccount(Map<String, Object> request) {
+    public OpenAccountResponse openAccount(OpenAccountRequest request) {
         // 实际业务逻辑应该在这里实现
-        Map<String, Object> response = new HashMap<>();
-        response.put("success", true);
-        response.put("message", "开户成功");
-        response.put("data", new HashMap<>());
+        OpenAccountResponse response = new OpenAccountResponse();
+        response.setTaClient("test_ta_client");
+        response.setAssetAcc("test_asset_acc");
+        response.setExtData("test_ext_data");
+        response.setSuccess(true);
+        response.setMessage("开户成功");
         return response;
     }
 }

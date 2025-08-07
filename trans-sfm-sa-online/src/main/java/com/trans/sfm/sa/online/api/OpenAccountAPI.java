@@ -1,10 +1,10 @@
 package com.trans.sfm.sa.online.api;
 
+import com.trans.sfm.sa.online.domain.OpenAccountRequest;
+import com.trans.sfm.sa.online.domain.OpenAccountResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
-import java.util.Map;
 
 /**
  * 开户接口API
@@ -18,5 +18,5 @@ public interface OpenAccountAPI {
      * @return 开户结果
      */
     @PostMapping("/open")
-    Map<String, Object> openAccount(@RequestBody Map<String, Object> request);
+    OpenAccountResponse openAccount(@RequestBody OpenAccountRequest request);
 }
