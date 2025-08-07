@@ -1,0 +1,17 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: trans-sfm-ta-online
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 # Nacos服务器地址
+
+# 日志配置
+logging:
+  level:
+    com.example.transsfmtaonline: debug
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
