@@ -14,14 +14,18 @@ spring:
           uri: lb://trans-sfm-sa-online
           predicates:
             - Path=/sa/**
-        - id: trans-sfm-client-online
-          uri: lb://trans-sfm-client-online
-          predicates:
-            - Path=/client/**
       discovery:
         locator:
           enabled: true
           lower-case-service-id: true
+
+# Feign配置
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 10000
 
 management:
   endpoints:
