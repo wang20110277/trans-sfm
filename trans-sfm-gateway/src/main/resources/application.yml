@@ -14,16 +14,6 @@ spring:
         server-addr: 127.0.0.1:8848 # Nacos服务器地址
     gateway:
       routes:
-        - id: trans-sfm-sa-online-person-account
-          uri: lb://trans-sfm-sa-online
-          predicates:
-            - Path=/api/account/openPersonAccount
-          filters:
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 5
-                redis-rate-limiter.burstCapacity: 10
-                key-resolver: "#{@pathKeyResolver}"
         - id: trans-sfm-sa-online
           uri: lb://trans-sfm-sa-online
           predicates:
@@ -34,14 +24,6 @@ spring:
                 redis-rate-limiter.replenishRate: 10
                 redis-rate-limiter.burstCapacity: 20
                 key-resolver: "#{@pathKeyResolver}"
-        - id: trans-sfm-ta-online
-          uri: lb://trans-sfm-ta-online
-          predicates:
-            - Path=/ta/**
-        - id: trans-sfm-client-online
-          uri: lb://trans-sfm-client-online
-          predicates:
-            - Path=/client/**
       discovery:
         locator:
           enabled: true

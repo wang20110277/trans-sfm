@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 开户接口API
  */
 @FeignClient(name = "open-account-service")
-@RequestMapping("/api/account")
+@RequestMapping("/sa/api/account")
 public interface OpenPersonAccountAPI {
     
     /**
