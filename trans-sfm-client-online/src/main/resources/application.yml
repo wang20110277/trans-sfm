@@ -4,14 +4,22 @@ server:
 spring:
   application:
     name: trans-sfm-client-online
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848 # Nacos服务器地址
 
 # 日志配置
 logging:
   level:
-    com.example.transsfmclient: debug
+    com.trans.sfm.client.online: debug
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+
+# Feign配置
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 10000
+
+# 网关地址配置
+gateway:
+  url: http://localhost:9000
