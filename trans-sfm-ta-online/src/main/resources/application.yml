@@ -12,6 +12,6 @@ spring:
 # 日志配置
 logging:
   level:
-    com.example.transsfmtaonline: debug
+    com.trans.sfm.ta.online: debug
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
