@@ -21,7 +21,20 @@
     <shardingsphere.version>5.1.0</shardingsphere.version>
     <spring-cloud.version>2021.0.3</spring-cloud.version>
     <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
+    <spring-ai.version>1.0.0-M7</spring-ai.version>
   </properties>
+
+  <!-- 添加Spring Milestone仓库以支持Spring AI依赖 -->
+  <repositories>
+    <repository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
   
   <dependencies>
     <dependency>

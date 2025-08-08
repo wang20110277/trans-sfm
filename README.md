@@ -7,12 +7,14 @@ trans-sfm 是一个基于微服务架构的理财代销SAAS系统，支持批量
 ## 系统架构
 
 ```
-trans-sfm-client-online -> Nginx -> trans-sfm-gateway网关 -> trans-sfm-sa-online -> trans-sfm-ta-online
+客户端请求 -> Nginx -> trans-sfm-gateway网关 -> trans-sfm-sa-online -> trans-sfm-ta-online
+                                          |
+                                          -> trans-sfm-client-online
 ```
 
 ### 核心组件
 
-1. **trans-sfm-client-online**: 客户端服务HTTP请求
+1. **trans-sfm-client-online**: 客户端服务，处理来自外部的HTTP请求
 2. **trans-sfm-gateway**: API网关，负责请求路由、限流和鉴权
 3. **trans-sfm-sa-online**: SA（Service Agent）服务，核心业务处理模块
 4. **trans-sfm-ta-online**: TA（Transfer Agent）服务，交易处理模块
@@ -22,12 +24,12 @@ trans-sfm-client-online -> Nginx -> trans-sfm-gateway网关 -> trans-sfm-sa-onli
 
 ### 调用流程
 
-1. trans-sfm-client-online发起请求到Nginx
+1. 客户端发起HTTP请求到Nginx
 2. Nginx将请求转发到trans-sfm-gateway网关
-3. 网关根据路由规则将请求分发到trans-sfm-sa-online
-4. trans-sfm-sa-online处理业务逻辑并调用trans-sfm-ta-online
+3. 网关根据路由规则将请求分发到对应的服务
+4. trans-sfm-sa-online作为核心服务，处理业务逻辑并调用trans-sfm-ta-online
 5. trans-sfm-ta-online处理交易相关操作
-6. 响应按原路径返回给trans-sfm-client-online
+6. 响应按原路径返回给客户端
 
 ## 技术栈
 
@@ -132,6 +134,74 @@ trans-sfm/
 ├── trans-sfm-transfer-lcd/      # LCD传输服务
 └── trans-sfm-pub/               # 公共模块
 ```
+
+## Spring AI MCP Server集成指南
+
+### 集成步骤
+
+1. 在选定的服务模块（如trans-sfm-sa-online）的pom.xml中添加Spring AI依赖:
+
+```xml
+<properties>
+  <!-- 添加Spring AI版本属性 -->
+  <spring-ai.version>1.0.0-M7</spring-ai.version>
+</properties>
+
+<!-- 添加Spring Milestone仓库 -->
+<repositories>
+  <repository>
+    <id>spring-milestones</id>
+    <name>Spring Milestones</name>
+    <url>https://repo.spring.io/milestone</url>
+    <snapshots>
+      <enabled>false</enabled>
+    </snapshots>
+  </repository>
+</repositories>
+
+<dependencies>
+  <!-- 添加Spring AI MCP Server依赖 -->
+  <dependency>
+    <groupId>org.springframework.ai</groupId>
+    <artifactId>spring-ai-mcp-server-webmvc-spring-boot-starter</artifactId>
+    <version>${spring-ai.version}</version>
+  </dependency>
+</dependencies>
+```
+
+2. 在application.yml中添加MCP Server配置:
+
+```yaml
+spring:
+  ai:
+    mcp:
+      server:
+        endpoint: /mcp
+        enabled: true
+```
+
+3. 创建自定义工具类:
+
+```java
+@Component
+public class FinancialTools {
+    
+    @Tool(name = "getAccountInfo", description = "获取账户信息")
+    public AccountInfo getAccountInfo(
+            @ToolParam(name = "accountId", description = "账户ID") String accountId) {
+        // 实现获取账户信息的逻辑
+        return new AccountInfo(accountId, "accountName", 10000.00);
+    }
+}
+```
+
+4. 重启服务，MCP Server将在指定端点提供服务
+
+### 注意事项
+
+1. Spring AI目前处于里程碑版本阶段，API可能会发生变化
+2. 确保Spring Boot版本与Spring AI版本兼容
+3. 根据实际需求选择webmvc或webflux版本的starter
 
 ## 安全特性
 

@@ -1,20 +1,25 @@
 server:
-  port: 8082
+  port: 8081
 
 spring:
-  autoconfigure:
-    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
-  profiles:
-    active: test
-  shardingsphere:
-    datasource:
-      names: ds0,ds1,ds2,ds3,config
+  application:
+    name: trans-sfm-sa-online
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/trans-sfm-client?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
   cloud:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848 # Nacos服务器地址
-  application:
-    name: trans-sfm-sa-online
+  # MCP Server 配置
+  ai:
+    mcp:
+      server:
+        endpoint: /mcp
+        enabled: true
 
 mybatis-plus:
   configuration:
